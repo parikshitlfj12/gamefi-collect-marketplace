@@ -1,0 +1,4 @@
+# pnpm-workspace.yaml
+packages:
+  - "apps/*"      # Stores backend, frontend, Solana programs
+  - "packages/*"  # Shared utilities, SDK, and types
