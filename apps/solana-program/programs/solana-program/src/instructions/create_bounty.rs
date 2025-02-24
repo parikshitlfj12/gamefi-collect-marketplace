@@ -1,6 +1,7 @@
-use crate::state::{Bounty, BountyStatus, Escrow};
+use crate::state::escrow::Escrow;
+use crate::state::bounty::{Bounty, BountyStatus};
 use anchor_lang::prelude::*;
-use anchor_lang::system_program::{self, Transfer};
+use anchor_lang::system_program::Transfer;
 
 #[derive(Accounts)]
 #[instruction(bounty_name: String)]
@@ -51,7 +52,7 @@ pub fn create_bounty(
     bounty.deadline = deadline;
     bounty.bounty_amount = bounty_amount;
     bounty.escrow = escrow.key();
-    bounty.status = BountyStatus::Active;
+    bounty.status = BountyStatus::Active.to_string();
 
     // Store escrow details
     escrow.bounty_id = bounty.key();

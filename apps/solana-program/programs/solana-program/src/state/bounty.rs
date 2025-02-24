@@ -1,3 +1,5 @@
+use std::fmt;
+
 use anchor_lang::prelude::*;
 
 #[derive(AnchorSerialize, AnchorDeserialize, Clone, PartialEq)]
@@ -6,6 +8,18 @@ pub enum BountyStatus {
     Completed,
     Expired,
 }
+
+impl fmt::Display for BountyStatus {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let status_str = match self {
+            BountyStatus::Active => "Active",
+            BountyStatus::Completed => "Completed",
+            BountyStatus::Expired => "Expired",
+        };
+        write!(f, "{}", status_str)
+    }
+}
+
 
 
 #[account]
